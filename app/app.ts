@@ -1,5 +1,8 @@
 import { Application } from '@nativescript/core';
 import { appConfig } from '~/config/app.config';
+import { setAppEvents } from '~/globals/app-events/app-events';
+
+setAppEvents();
 
 console.log(`apiEndpoint${appConfig.apiEndpoint}`);
 
