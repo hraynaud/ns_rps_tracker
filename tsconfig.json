@@ -18,7 +18,8 @@
             "~/*": [
                 "app/*"
             ]
-        }
+        },
+        "removeComments": false
     },
     "exclude": [
         "node_modules",
