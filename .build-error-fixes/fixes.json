@@ -1,0 +1,6 @@
+{
+    "error": "Launch images deprecated",
+    "message": "warning: Launch images are deprecated in iOS 13.0. Use a launch storyboard or XIB instead.",
+    "fix": "In ../App_Resources/iOS/build.xcconfig the configuration ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage; should be removed ../App_Resources/iOS/Assets.xcassets/LaunchImage.launchimage should be deleted",
+    "link": "https://github.com/NativeScript/nativescript-cli/issues/4938#issuecomment-530421515"
+}
