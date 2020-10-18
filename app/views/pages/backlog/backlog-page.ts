@@ -1,5 +1,5 @@
 import { BacklogViewModel } from '~/shared/view-models/pages/backlog/backlog.page.vm';
-import { NavigatedData, Page, EventData } from '@nativescript/core/ui/page';
+import { NavigatedData, Page, EventData } from '@nativescript/core';
 
 const backlogVm: BacklogViewModel = new BacklogViewModel();
 

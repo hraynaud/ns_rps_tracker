@@ -1,5 +1,3 @@
 {
-	"recommendations": [
-		"telerik.nativescript"
-	]
+  "recommendations": ["nativescript.nativescript"]
 }
