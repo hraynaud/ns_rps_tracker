@@ -7,7 +7,7 @@ setAppEvents();
 
 console.log(`apiEndpoint${appConfig.apiEndpoint}`);
 
-const isLoggedIn = false;
+const isLoggedIn = true;
 
 if (isLoggedIn) {
 	Application.run({ moduleName: 'app-root-authenticated' });

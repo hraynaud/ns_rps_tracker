@@ -1,5 +1,5 @@
 import { NavigatedData, Page } from '@nativescript/core/ui/page';
-import { LoginViewModel } from '~/shared/view-models/login/login.page.vm';
+import { LoginViewModel } from '~/shared/view-models/pages/login/login.page.vm';
 
 let loginVm: LoginViewModel = null;
 

@@ -5,8 +5,8 @@ import {
 	PtUser,
 	PtRegisterModel,
 } from '~/core/models/domain';
-
 import { handleFetchErrors } from '../fetch-error-handler';
+
 export class AuthRepository implements PtAuthRepository {
 	constructor(public apiEndpoint: string) {}
 
