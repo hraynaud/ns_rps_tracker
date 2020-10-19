@@ -9,7 +9,8 @@
                     <GridLayout class="li-wrapper" rows="60" columns="10, 50,  *, 100">
 
                         <GridLayout col="1" class="li-avatar">
-                            <Image src="{{ assignee.avatar }}" stretch="aspectFit" />
+                           
+                            <Image src="{{ $parents['ListView'].apiEndpoint + assignee.avatar }}" stretch="aspectFit" />
                         </GridLayout>
 
                         <StackLayout class="li-info-wrapper" col="2">

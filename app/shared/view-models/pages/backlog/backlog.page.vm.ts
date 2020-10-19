@@ -14,12 +14,13 @@ export class BacklogViewModel extends Observable {
 	private backlogService: PtBacklogService;
 
 	public items: ObservableArray<PtItem> = new ObservableArray<PtItem>();
-
+	public apiEndpoint: String;
 	constructor() {
 		super();
 
 		this.authService = getAuthService();
 		this.backlogService = getBacklogService();
+		this.apiEndpoint = this.backlogService.getApiEndpoint();
 	}
 
 	public refresh() {
