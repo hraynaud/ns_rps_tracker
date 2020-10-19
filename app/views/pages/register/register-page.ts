@@ -1,4 +1,5 @@
 import { NavigatedData, Page } from '@nativescript/core/ui/page';
+import { goToLoginPage } from '~/shared/helpers/navigation/nav.helper';
 
 import { RegisterViewModel } from '~/shared/view-models/pages/register/register.page.vm';
 
@@ -23,5 +24,5 @@ export function onRegisterTap() {
 }
 
 export function onGotoLoginTap() {
-	// Go to login page
+	goToLoginPage();
 }
