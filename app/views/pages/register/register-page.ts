@@ -1,5 +1,8 @@
 import { NavigatedData, Page } from '@nativescript/core/ui/page';
-import { goToLoginPage } from '~/shared/helpers/navigation/nav.helper';
+import {
+	goToBacklogPage,
+	goToLoginPage,
+} from '~/shared/helpers/navigation/nav.helper';
 
 import { RegisterViewModel } from '~/shared/view-models/pages/register/register.page.vm';
 
@@ -15,7 +18,7 @@ export function onRegisterTap() {
 	registerVm
 		.onRegisterTapHandler()
 		.then(() => {
-			// Go to backlog page
+			goToBacklogPage(true);
 		})
 		.catch((error) => {
 			console.error(error);

@@ -27,14 +27,14 @@ export class DetailViewModel extends Observable {
 	public itemTypeImage;
 	/* details form END */
 
-	constructor() {
+	constructor(ptItem: PtItem) {
 		super();
 
 		this.authService = getAuthService();
 		this.backlogService = getBacklogService();
 
-		// this.itemTitle = ptItem.title;
-		// this.selectedAssignee = ptItem.assignee;
+		this.itemTitle = ptItem.title;
+		this.selectedAssignee = ptItem.assignee;
 	}
 
 	public onTabDetailsTap() {

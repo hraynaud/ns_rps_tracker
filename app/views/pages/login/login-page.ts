@@ -1,17 +1,22 @@
 import { NavigatedData, Page } from '@nativescript/core/ui/page';
 import { LoginViewModel } from '~/shared/view-models/pages/login/login.page.vm';
-import { goToRegisterPage } from '~/shared/helpers/navigation/nav.helper';
+import {
+	goToBacklogPage,
+	goToRegisterPage,
+} from '~/shared/helpers/navigation/nav.helper';
 
 let loginVm: LoginViewModel = null;
 
-export function onLogingTap() {
+export function onLoginTap() {
+	// Let the VM know about login action
 	loginVm
 		.onLoginTapHandler()
 		.then(() => {
-			// go to backlog page
+			goToBacklogPage(true);
 		})
-		.catch(() => {
-			console.log('could not log you in at this time');
+		.catch((error) => {
+			console.error(error);
+			alert('Sorry, could not log in at this time');
 		});
 }
 

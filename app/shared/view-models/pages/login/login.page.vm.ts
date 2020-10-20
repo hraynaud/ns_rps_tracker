@@ -6,8 +6,8 @@ import { ObservableProperty } from '~/shared/observable-property-decorator';
 
 export class LoginViewModel extends Observable {
 	private authService: PtAuthService;
-	public email = 'herby@blase.com';
-	public password = '';
+	public email = 'alex@email.com';
+	public password = 'nuvious';
 
 	@ObservableProperty() public loggingIn = false;
 
