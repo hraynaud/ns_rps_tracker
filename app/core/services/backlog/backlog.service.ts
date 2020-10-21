@@ -1,9 +1,15 @@
 import { PtBacklogService } from '~/core/contracts/services/pt-backlog-service.contract';
-import { FetchItemsResponse } from '~/core/contracts/responses/backlog';
+import {
+	DeleteItemResponse,
+	FetchItemsResponse,
+} from '~/core/contracts/responses/backlog';
 import { PtItem } from '~/core/models/domain';
 import { PtLoggingService, PtAppStateService } from '~/core/contracts/services';
 import { PtBacklogRepository } from '~/core/contracts/repositories';
-import { FetchItemsRequest } from '~/core/contracts/requests/backlog';
+import {
+	DeleteItemRequest,
+	FetchItemsRequest,
+} from '~/core/contracts/requests/backlog';
 
 export class BacklogService implements PtBacklogService {
 	constructor(
@@ -32,6 +38,34 @@ export class BacklogService implements PtBacklogService {
 					const response: FetchItemsResponse = {
 						items: ptItems,
 					};
+					resolve(response);
+				}
+			);
+		});
+	}
+	public deletePtItem(
+		deleteItemRequest: DeleteItemRequest
+	): Promise<DeleteItemResponse> {
+		return new Promise<DeleteItemResponse>((resolve, reject) => {
+			this.backlogRepo.deletePtItem(
+				deleteItemRequest.itemToDelete.id,
+				(error) => {
+					this.loggingService.error('Deleting item failed');
+					reject(error);
+				},
+				() => {
+					const backlogItems = this.appStateService.getStateItem(
+						'backlogItems'
+					);
+					const updatedItems = backlogItems.filter((i) => {
+						return i.id !== deleteItemRequest.itemToDelete.id;
+					});
+					this.appStateService.setStateItem('backlogItems', updatedItems);
+
+					const response: DeleteItemResponse = {
+						deleted: true,
+					};
+
 					resolve(response);
 				}
 			);

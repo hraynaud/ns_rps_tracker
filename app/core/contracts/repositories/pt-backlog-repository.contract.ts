@@ -7,4 +7,9 @@ export interface PtBacklogRepository {
 		errorHandler: (error: any) => void,
 		successHandler: (data: PtItem[]) => void
 	): void;
+	deletePtItem(
+		itemId: number,
+		errorHandler: (error: any) => void,
+		successHandler: () => void
+	): void;
 }

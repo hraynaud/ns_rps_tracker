@@ -12,6 +12,8 @@ import {
 	getBacklogService,
 } from '~/globals/dependencies/locator';
 import { PtAuthService, PtBacklogService } from '~/core/contracts/services';
+import { toDeleteItemRequest } from '~/core/contracts/requests/backlog/delete-item.request';
+import { goBack } from '~/shared/helpers/navigation/nav.helper';
 
 export class DetailViewModel extends Observable {
 	private authService: PtAuthService;
@@ -27,7 +29,7 @@ export class DetailViewModel extends Observable {
 	public itemTypeImage;
 	/* details form END */
 
-	constructor(ptItem: PtItem) {
+	constructor(private ptItem: PtItem) {
 		super();
 
 		this.authService = getAuthService();
@@ -59,6 +61,19 @@ export class DetailViewModel extends Observable {
 			'itemTypeImage',
 			ItemType.imageResFromType(this.selectedTypeValue)
 		);
+	}
+
+	public deleteRequested() {
+		const deleteItemRequest = toDeleteItemRequest(this.ptItem);
+		this.backlogService
+			.deletePtItem(deleteItemRequest)
+			.then(() => {
+				goBack();
+			})
+			.catch(() => {
+				console.log('some error occured');
+				goBack();
+			});
 	}
 	/* details END */
 }
