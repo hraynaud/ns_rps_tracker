@@ -11,12 +11,19 @@ import {
 	goToLoginPage,
 	goToSettingsPage,
 } from '~/shared/helpers/navigation/nav.helper';
+import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 
 const backlogVm: BacklogViewModel = new BacklogViewModel();
+let drawer: RadSideDrawer = null;
 
 export function onNavigatingTo(args: NavigatedData) {
 	const page = <Page>args.object;
 	page.bindingContext = backlogVm;
+	drawer = page.getViewById('sideDrawer');
+}
+
+export function toggleDrawer() {
+	drawer.toggleDrawerState();
 }
 
 export function onLoaded(args: EventData) {
