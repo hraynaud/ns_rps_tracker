@@ -34,4 +34,8 @@ export class BacklogViewModel extends Observable {
 			this.items.push(response.items);
 		});
 	}
+
+	public onLogoutTapHandler() {
+		return this.authService.logout();
+	}
 }

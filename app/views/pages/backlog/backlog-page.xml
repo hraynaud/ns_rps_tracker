@@ -1,8 +1,19 @@
 <Page navigatingTo="onNavigatingTo" loaded="onLoaded" 
     xmlns="http://schemas.nativescript.org/tns.xsd">
-
+   <ActionBar title="Backlog">
+        <ActionItem tap="onSettingsTap" ios.position="right">
+            <StackLayout class="navbar_image_wrapper" ios:horizontalAlignment="right">
+                <Label text="Settings"></Label>
+            </StackLayout>
+        </ActionItem>
+        <ActionItem tap="onLogoutTap" ios.position="right">
+            <StackLayout class="navbar_image_wrapper" ios:horizontalAlignment="right">
+                <Label text="logout"></Label>
+            </StackLayout>
+        </ActionItem>
+    </ActionBar>
     <GridLayout class="backlog-container" rows="*, auto">
-        <GridLayout row="0" class="list-container">
+        <GridLayout row="0" class="l    ist-container">
 
             <ListView id="backlogList" class="items-list" items="{{ items }}" itemTap="onListItemTap" separatorColor="#97a879">
                 <ListView.itemTemplate>
