@@ -19,6 +19,7 @@ export class DetailViewModel extends Observable {
 	private authService: PtAuthService;
 	private backlogService: PtBacklogService;
 
+	public apiEndpoint: String;
 	public selectedScreen: DetailScreenType = 'details';
 	private selectedAssignee: PtUser;
 	public itemTitle: string;
@@ -37,6 +38,7 @@ export class DetailViewModel extends Observable {
 
 		this.itemTitle = ptItem.title;
 		this.selectedAssignee = ptItem.assignee;
+		this.apiEndpoint = this.backlogService.getApiEndpoint();
 	}
 
 	public onTabDetailsTap() {

@@ -22,7 +22,7 @@
                 <GridLayout row="0" columns="*, *, auto" class="assignee-row">
                     <Label text="Assignee" color="#4b5833" col="0" />
                     <Label text="{{ selectedAssignee.fullName }}" col="1" />
-                    <Image id="assigneeImg" width="40" height="40" class="pt-item-detail-avatar" src="{{ selectedAssignee.avatar }}" col="2" />
+                    <Image id="assigneeImg" width="40" height="40" class="pt-item-detail-avatar" src="{{ apiEndpoint + selectedAssignee.avatar }}" col="2" />
                 </GridLayout>
             </GridLayout>
         </StackLayout>
