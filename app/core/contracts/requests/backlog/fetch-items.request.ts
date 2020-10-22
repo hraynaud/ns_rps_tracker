@@ -1,9 +1,16 @@
+import { PresetType } from '~/core/models/types/presets';
+
 export interface FetchItemsRequest {
-    currentUserId: number;
+	currentPreset: PresetType;
+	currentUserId: number;
 }
 
-export function toFetchItemsRequest(currentUserId: number): FetchItemsRequest {
-    return {
-        currentUserId
-    };
+export function toFetchItemsRequest(
+	currentPreset: PresetType,
+	currentUserId: number
+): FetchItemsRequest {
+	return {
+		currentPreset,
+		currentUserId,
+	};
 }

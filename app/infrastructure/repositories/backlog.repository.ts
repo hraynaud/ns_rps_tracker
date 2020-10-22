@@ -1,16 +1,29 @@
 import { PtBacklogRepository } from '~/core/contracts/repositories';
 import { PtItem } from '~/core/models/domain';
 import { PriorityEnum, StatusEnum } from '~/core/models/domain/enums';
+import { PresetType } from '~/core/models/types';
 import { handleFetchErrors } from '~/infrastructure/fetch-error-handler';
 
 export class BacklogRepository implements PtBacklogRepository {
 	constructor(public apiEndpoint: string) {}
 
-	private getFilteredBacklogUrl(currentUserId?: number) {
-		if (currentUserId) {
-			return `${this.apiEndpoint}/myItems?userId=${currentUserId}`;
-		} else {
-			return `${this.apiEndpoint}/backlog`;
+	private getFilteredBacklogUrl(
+		currentPreset: PresetType,
+		currentUserId?: number
+	) {
+		switch (currentPreset) {
+			case 'my':
+				if (currentUserId) {
+					return `${this.apiEndpoint}/myItems?userId=${currentUserId}`;
+				} else {
+					return `${this.apiEndpoint}/backlog`;
+				}
+			case 'open':
+				return `${this.apiEndpoint}/openItems`;
+			case 'closed':
+				return `${this.apiEndpoint}/closedItems`;
+			default:
+				return `${this.apiEndpoint}/backlog`;
 		}
 	}
 
@@ -19,11 +32,12 @@ export class BacklogRepository implements PtBacklogRepository {
 	}
 
 	public fetchPtItems(
+		currentPreset: PresetType,
 		currentUserId: number,
 		errorHandler: (error: any) => void,
 		successHandler: (data: PtItem[]) => void
 	) {
-		fetch(this.getFilteredBacklogUrl(currentUserId), {
+		fetch(this.getFilteredBacklogUrl(currentPreset, currentUserId), {
 			method: 'GET',
 		})
 			.then(handleFetchErrors)

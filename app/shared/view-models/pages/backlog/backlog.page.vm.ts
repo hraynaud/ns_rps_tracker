@@ -24,7 +24,10 @@ export class BacklogViewModel extends Observable {
 	}
 
 	public refresh() {
-		const fetchReq = toFetchItemsRequest(this.authService.getCurrentUserId());
+		const fetchReq = toFetchItemsRequest(
+			this.backlogService.getCurrentPreset(),
+			this.authService.getCurrentUserId()
+		);
 
 		this.backlogService.fetchItems(fetchReq).then((response) => {
 			// empty the observable array

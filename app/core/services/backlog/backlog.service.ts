@@ -10,6 +10,7 @@ import {
 	DeleteItemRequest,
 	FetchItemsRequest,
 } from '~/core/contracts/requests/backlog';
+import { PresetType } from '~/core/models/types';
 
 export class BacklogService implements PtBacklogService {
 	constructor(
@@ -22,11 +23,29 @@ export class BacklogService implements PtBacklogService {
 		return this.backlogRepo.apiEndpoint;
 	}
 
+	public getCurrentPreset(): PresetType {
+		const curPre = this.appStateService.getStateItem('selectedPreset');
+		if (curPre) {
+			return curPre;
+		} else {
+			return 'open';
+		}
+	}
+
+	public setPreset(preset): Promise<void> {
+		const curPreset = this.appStateService.getStateItem('selectedPreset');
+		if (curPreset !== preset) {
+			this.appStateService.setStateItem('selectedPreset', preset);
+		}
+		return Promise.resolve();
+	}
+
 	public fetchItems(
 		fetchItemsRequest: FetchItemsRequest
 	): Promise<FetchItemsResponse> {
 		return new Promise<FetchItemsResponse>((resolve, reject) => {
 			this.backlogRepo.fetchPtItems(
+				fetchItemsRequest.currentPreset,
 				fetchItemsRequest.currentUserId,
 				(error) => {
 					this.loggingService.error('Fetch items failed');
