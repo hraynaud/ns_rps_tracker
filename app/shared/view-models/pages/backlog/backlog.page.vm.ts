@@ -23,6 +23,10 @@ export class BacklogViewModel extends Observable {
 		this.apiEndpoint = this.backlogService.getApiEndpoint();
 	}
 
+	public onPresetSelected() {
+		this.refresh();
+	}
+
 	public refresh() {
 		const fetchReq = toFetchItemsRequest(
 			this.backlogService.getCurrentPreset(),
